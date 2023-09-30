@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DestroyOutOfBounds : MonoBehaviour
@@ -23,7 +24,14 @@ public class DestroyOutOfBounds : MonoBehaviour
         else if (transform.position.z < lowerBound)
         {
             Destroy(gameObject);
-            Debug.Log("Game Over");
+        }           
+
+        // Reduces score when animals pass the player
+            if (transform.position.z < lowerBound && DetectCollisions.lives > 0)
+        {
+            DetectCollisions.lives--;
+            Debug.Log("Lives = " + DetectCollisions.lives);
         }
+           
     }
 }
